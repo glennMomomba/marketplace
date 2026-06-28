@@ -1,0 +1,34 @@
+# Laravel & PHP
+/vendor
+/node_modules
+/.env
+.phpunit.result.cache
+Homestead.yaml
+Homestead.json
+
+# Storage & Cache
+/storage/*.key
+/storage/app/public
+/storage/debugbar
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+
+# IDE & OS files
+/.idea
+/.vscode
+*.swp
+*.swo
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Composer & NPM
+composer.lock
+package-lock.json
+yarn.lock
+
+# Public uploads (si tu veux éviter de versionner les fichiers uploadés)
+public/storage

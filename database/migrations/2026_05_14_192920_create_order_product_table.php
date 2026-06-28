@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('order_product', function (Blueprint $table) {
+            $table->id();
+
+            // Relations
+            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+
+            // Infos pivot
+            $table->integer('quantity')->default(1);
+            $table->decimal('price', 10, 2); // prix unitaire au moment de la commande
+
+            $table->timestamps();
+
+            // Empêcher les doublons (un produit ne peut pas être ajouté deux fois à la même commande)
+            $table->unique(['order_id', 'product_id']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('order_product');
+    }
+};
